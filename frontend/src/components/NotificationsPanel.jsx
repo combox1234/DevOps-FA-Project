@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTranslation } from '../translations';
+import { API_BASE_URL } from '../apiService';
 
 const NotificationsPanel = ({ language = 'en', isOpen, onClose }) => {
   const [notifications, setNotifications] = useState([]);
@@ -16,7 +17,7 @@ const NotificationsPanel = ({ language = 'en', isOpen, onClose }) => {
   const fetchNotifications = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8000/api/notifications/?mark_read=true', {
+      const response = await fetch(`${API_BASE_URL}/api/notifications/?mark_read=true`, {
         credentials: 'include'
       });
       const data = await response.json();

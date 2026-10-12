@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTranslation } from '../translations';
+import { API_BASE_URL } from '../apiService';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -40,9 +41,13 @@ const Dashboard = ({ language = 'en' }) => {
   const fetchDashboardStats = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:8000/api/dashboard/stats/?days=${timeRange}`, {
+      setError('');
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/stats/?days=${timeRange}`, {
         credentials: 'include'
       });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: Failed to fetch dashboard data`);
+      }
       const data = await response.json();
       setStats(data);
     } catch (err) {
@@ -98,8 +103,14 @@ const Dashboard = ({ language = 'en' }) => {
 
   if (error) {
     return (
-      <div className="max-w-md mx-auto bg-red-50 border border-red-200 rounded-lg p-4">
-        <p className="text-red-800">{error}</p>
+      <div className="max-w-md mx-auto bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+        <p className="text-red-800 font-medium mb-3">{error}</p>
+        <button
+          onClick={fetchDashboardStats}
+          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-medium transition-colors"
+        >
+          {getTranslation('retry', language) || 'Retry'}
+        </button>
       </div>
     );
   }

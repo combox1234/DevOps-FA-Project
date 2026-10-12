@@ -259,7 +259,7 @@ CSP_FRAME_SRC = ("'self'", "https://translate.google.com")
 # set TF_ENABLE_ONEDNN_OPTS=0
 
 CORS_ALLOWED_ORIGINS = [origin.strip() for origin in os.getenv(
-    'CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://localhost:3000'
+    'CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://localhost:3000,http://localhost:8080,http://localhost'
 ).split(',') if origin.strip()]
 
 # Do not combine credentialed requests with a wildcard origin.
@@ -267,7 +267,7 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 # CSRF trusted origins for Django 4.0+
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv(
-    'CSRF_TRUSTED_ORIGINS', 'http://localhost:5173,http://localhost:3000'
+    'CSRF_TRUSTED_ORIGINS', 'http://localhost:5173,http://localhost:3000,http://localhost:8080,http://localhost'
 ).split(',') if origin.strip()]
 
 CORS_ALLOW_CREDENTIALS = True

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getTranslation } from '../translations';
+import { api } from '../apiService';
 
 const DiseaseDetails = ({ language }) => {
   const { diseaseName } = useParams();
@@ -18,7 +19,7 @@ const DiseaseDetails = ({ language }) => {
   const fetchDiseaseDetails = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:8000/api/disease/${diseaseName}/`);
+      const response = await api.get(`/api/disease/${diseaseName}/`);
       setDiseaseData(response.data);
       setError(null);
     } catch (err) {

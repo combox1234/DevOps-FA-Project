@@ -35,6 +35,8 @@ services:
     volumes:
       - media_data:/app/media
       - model_data:/app/app/ml_models
+    ports:
+      - "8000:8000"
     expose:
       - "8000"
     healthcheck:
@@ -52,7 +54,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "80:80"
+      - "8080:80"
     restart: unless-stopped
 
   prometheus:

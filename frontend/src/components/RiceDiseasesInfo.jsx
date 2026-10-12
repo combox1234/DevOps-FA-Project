@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTranslation } from '../translations';
+import { API_BASE_URL } from '../apiService';
 
 const RiceDiseasesInfo = ({ language = 'en' }) => {
   const [selectedDisease, setSelectedDisease] = useState('rice-blast');
@@ -83,7 +84,7 @@ const RiceDiseasesInfo = ({ language = 'en' }) => {
     if (targetLang === 'en') return text;
 
     try {
-      const response = await fetch('http://localhost:8000/api/translate/', {
+      const response = await fetch(`${API_BASE_URL}/api/translate/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

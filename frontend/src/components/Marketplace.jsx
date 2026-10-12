@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTranslation } from '../translations';
+import { API_BASE_URL } from '../apiService';
 import { Wrapper, Status } from '@googlemaps/react-wrapper';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
@@ -45,7 +46,7 @@ const Marketplace = ({ language = 'en' }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/marketplace/products/?search=${searchQuery}&type=${selectedCategory}&sort=${sortBy}`, {
+      const response = await fetch(`${API_BASE_URL}/api/marketplace/products/?search=${searchQuery}&type=${selectedCategory}&sort=${sortBy}`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -57,7 +58,7 @@ const Marketplace = ({ language = 'en' }) => {
 
   const fetchMandis = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/marketplace/mandis/', {
+      const response = await fetch(`${API_BASE_URL}/api/marketplace/mandis/`, {
         credentials: 'include'
       });
       const data = await response.json();

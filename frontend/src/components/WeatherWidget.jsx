@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTranslation } from '../translations';
+import { API_BASE_URL } from '../apiService';
 
 const WeatherWidget = ({ language = 'en', location = null }) => {
   const [weather, setWeather] = useState(null);
@@ -34,14 +35,14 @@ const WeatherWidget = ({ language = 'en', location = null }) => {
 
       // Fetch current weather
       const weatherResponse = await fetch(
-        `http://localhost:8000/api/weather/current/?lat=${lat}&lon=${lon}&location=${encodeURIComponent(locationName)}`,
+        `${API_BASE_URL}/api/weather/current/?lat=${lat}&lon=${lon}&location=${encodeURIComponent(locationName)}`,
         { credentials: 'include' }
       );
       const weatherData = await weatherResponse.json();
 
       // Fetch forecast
       const forecastResponse = await fetch(
-        `http://localhost:8000/api/weather/forecast/?lat=${lat}&lon=${lon}&location=${encodeURIComponent(locationName)}&days=5`,
+        `${API_BASE_URL}/api/weather/forecast/?lat=${lat}&lon=${lon}&location=${encodeURIComponent(locationName)}&days=5`,
         { credentials: 'include' }
       );
       const forecastData = await forecastResponse.json();

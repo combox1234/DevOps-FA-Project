@@ -6,8 +6,11 @@ backend/.env
 frontend/.env
 *.pem
 *.key
+.sf/
 
 # Python / Django
+.pyenv/
+backend/.pyenv/
 __pycache__/
 *.py[cod]
 *.sqlite3

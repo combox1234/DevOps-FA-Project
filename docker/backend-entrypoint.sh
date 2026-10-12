@@ -2,6 +2,7 @@
 set -eu
 
 python manage.py migrate --noinput
+python manage.py populate_treatments || true
 python manage.py collectstatic --noinput
 
 # Download is intentionally opt-in. It avoids baking 380MB ML files or credentials

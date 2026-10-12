@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { predictDisease } from '../apiService';
+import { predictDisease, API_BASE_URL } from '../apiService';
 import { getTranslation } from '../translations';
 
 const CropPredictor = ({ language = 'en' }) => {
@@ -89,7 +89,7 @@ const CropPredictor = ({ language = 'en' }) => {
                 <div>
                   <h4 className="text-sm font-medium text-gray-700 mb-2">{getTranslation('diseaseReference', language) || 'Disease Reference'}</h4>
                   <img
-                    src={`http://localhost:8000${diseaseImage}`}
+                    src={`${API_BASE_URL}${diseaseImage}`}
                     alt="Disease reference"
                     className="w-full h-48 object-cover rounded-lg border-2 border-red-200"
                     onError={(e) => {

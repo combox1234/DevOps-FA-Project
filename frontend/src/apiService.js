@@ -3,9 +3,9 @@ import axios from 'axios';
 // Backend URL - defaults to localhost for development, uses env var for production
 // Docker/Nginx serves the UI and API from the same origin.  A separate URL is
 // only needed when running the Vite development server or a remote frontend.
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true,
   xsrfCookieName: 'csrftoken',
